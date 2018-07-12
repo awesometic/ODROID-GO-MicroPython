@@ -1,0 +1,8 @@
+# IntelliJ project files 
+*.iml
+*.iws
+*.ipr
+.idea/
+
+# prevent from adding boot.py which has test code
+boot.py
