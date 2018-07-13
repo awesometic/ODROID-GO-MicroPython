@@ -1,10 +1,5 @@
 from machine import Pin, SPI
-
-from utils.go_pins import *
-from utils.lcd import ILI9341, colors, fonts
-from utils.button import Button
-from utils.speaker import Speaker
-from utils.battery import Battery
+from .utils import *
 
 
 class ODROID_GO:
@@ -77,3 +72,4 @@ class ODROID_GO:
 
 
 GO = ODROID_GO()
+GO.begin()
