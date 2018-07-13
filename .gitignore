@@ -5,4 +5,5 @@
 .idea/
 
 # prevent from adding boot.py which has test code
-boot.py
+odroid_go/test
+odroid_go/test/*
