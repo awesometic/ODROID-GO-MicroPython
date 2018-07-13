@@ -4,6 +4,6 @@
 *.ipr
 .idea/
 
-# prevent from adding boot.py which has test code
+# prevent from adding some test codes
 odroid_go/test
 odroid_go/test/*
