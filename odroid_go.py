@@ -1,7 +1,7 @@
 from machine import Pin, SPI
 
 from utils.go_pins import *
-from utils.lcd import ILI9341, colors
+from utils.lcd import ILI9341, colors, fonts
 from utils.button import Button
 from utils.speaker import Speaker
 from utils.battery import Battery
@@ -48,6 +48,7 @@ class ODROID_GO:
         self.lcd.fill(colors.BLACK)
         self.lcd.set_pos(0, 0)
         self.lcd.colors = colors
+        self.lcd.fonts = fonts
         Pin(TFT_LED_PIN, Pin.OUT).value(1)
 
         # Buttons

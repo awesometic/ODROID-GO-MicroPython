@@ -15,8 +15,8 @@
 
 import time
 import ustruct
-from . import glcdfont
 import framebuf
+from .fonts import GLCDFONT
 from micropython import const
 
 _RDDSDR = const(0x0f) # Read Display Self-Diagnostic Result
@@ -72,7 +72,7 @@ class ILI9341:
         self._colormap = bytearray(b'\x00\x00\xFF\xFF') #default white foregraound, black background
         self._x = 0
         self._y = 0
-        self._font = glcdfont
+        self._font = GLCDFONT
         self.scrolling = False
 
     def set_color(self,fg,bg):
