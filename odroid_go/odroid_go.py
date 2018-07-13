@@ -1,4 +1,4 @@
-from machine import Pin, SPI
+from machine import Pin, SPI, ADC
 from .utils import *
 
 
@@ -35,7 +35,8 @@ class ODROID_GO:
         self.speaker = Speaker(SPEAKER_PIN, SPEAKER_DAC_PIN)
 
     def _init_battery(self):
-        pass
+        self.battery = Battery(BATTERY_PIN, BATTERY_RESISTANCE_NUM,
+                               ADC.WIDTH_12BIT, ADC.ATTN_11DB)
 
     def begin(self):
         # LCD
