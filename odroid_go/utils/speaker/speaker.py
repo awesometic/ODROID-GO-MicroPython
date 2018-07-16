@@ -32,18 +32,15 @@ class Speaker:
             self._dac_pin.value(switch)
 
     # TODO: It should run as in non-blocking way (async, thread, ...)
-    def _play_tone(self):
-        self._speaker_pwm.freq(self._beep_frequency)
+    def _play_tone(self, frequency=None, duration=None):
+        self._speaker_pwm.freq(self._beep_frequency if frequency is None else frequency)
         self._speaker_pwm.duty(self._volume_duty)
 
-        utime.sleep(self._beep_duration)
+        utime.sleep(self._beep_duration if duration is None else duration)
         self._speaker_pwm.duty(0)
 
     def tone(self, frequency=None, duration=None):
-        self._beep_frequency = self._beep_frequency if frequency is None else frequency
-        self._beep_duration = self._beep_duration if duration is None else duration
-
-        self._play_tone()
+        self._play_tone(frequency, duration)
 
     def beep(self):
         self.tone()
