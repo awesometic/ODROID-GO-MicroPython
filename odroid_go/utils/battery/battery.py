@@ -19,6 +19,7 @@ class Battery:
     """
 
     _adc1_pin = object()
+    _sampling_count = 64
     _battery_resistance_num = 0
 
     def __init__(self, pin, resistance_num, width, atten):
@@ -29,4 +30,10 @@ class Battery:
         self._battery_resistance_num = resistance_num
 
     def get_voltage(self):
-        return self._adc1_pin.read() * self._battery_resistance_num
+        reading = 0
+        for i in range(0, self._sampling_count):
+            reading += self._adc1_pin.read()
+
+        reading /= self._sampling_count
+
+        return reading * self._battery_resistance_num / 1000
