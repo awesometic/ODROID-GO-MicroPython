@@ -43,6 +43,7 @@ _VMCTRL1 = const(0xc5) # VCOM Control 1
 _VMCTRL2 = const(0xc7) # VCOM Control 2
 _FRMCTR1 = const(0xb1) # Frame Rate Control 1
 _DISCTRL = const(0xb6) # Display Function Control
+_INTFACE = const(0xf6) # Interface
 _ENA3G = const(0xf2) # Enable 3G
 _PGAMCTRL = const(0xe0) # Positive Gamma Control
 _NGAMCTRL = const(0xe1) # Negative Gamma Control
@@ -96,20 +97,21 @@ class ILI9341:
     def init(self):
         for command, data in (
             (_RDDSDR, b"\x03\x80\x02"),
-            (_PWCRTLB, b"\x00\xc1\x30"),
+            (_PWCRTLB, b"\x00\xcf\x30"),
             (_PWRONCTRL, b"\x64\x03\x12\x81"),
             (_DTCTRLA, b"\x85\x00\x78"),
             (_PWCTRLA, b"\x39\x2c\x00\x34\x02"),
             (_PRCTRL, b"\x20"),
             (_DTCTRLB, b"\x00\x00"),
-            (_PWCTRL1, b"\x23"),
-            (_PWCTRL2, b"\x10"),
-            (_VMCTRL1, b"\x3e\x28"),
-            (_VMCTRL2, b"\x86"),
-            (_MADCTL, b"\xe8"),
+            (_PWCTRL1, b"\x1b"),
+            (_PWCTRL2, b"\x12"),
+            (_VMCTRL1, b"\x3e\x3c"),
+            (_VMCTRL2, b"\x91"),
+            (_MADCTL, b"\xa8"),
             (_PIXSET, b"\x55"),
-            (_FRMCTR1, b"\x00\x13"),
-            (_DISCTRL, b"\x08\x82\x27"),
+            (_FRMCTR1, b"\x00\x1b"),
+            (_DISCTRL, b"\x0a\xa2\x27"),
+            (_INTFACE, b"\x01\x30"),
             (_ENA3G, b"\x00"),
             (_GAMSET, b"\x01"),
             (_PGAMCTRL, b"\x0f\x31\x2b\x0c\x0e\x08\x4e\xf1\x37\x07\x10\x03\x0e\x09\x00"),
