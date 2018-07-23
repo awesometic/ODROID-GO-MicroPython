@@ -29,5 +29,6 @@
 - [Wiki](https://wiki.odroid.com/odroid_go/odroid_go)
   - [Game Emulator](https://wiki.odroid.com/odroid_go/odroid_go#gbc_nes_and_sms_emulators)
   - [Arduino Coding Camp](https://wiki.odroid.com/odroid_go/odroid_go#arduino)
+  - [MicroPython Coding Camp](https://wiki.odroid.com/odroid_go/odroid_go#micropython)
 - [Forum](https://forum.odroid.com/viewforum.php?f=157&sid=e9409529c1d6c81b654b7dd32c9a5140)
 
