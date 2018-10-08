@@ -1,5 +1,5 @@
 from odroid_go import GO
 
-GO.lcd.set_font(GO.lcd.fonts.TT24)
-GO.lcd.set_color(GO.lcd.colors.GREEN, GO.lcd.colors.BLACK)
-GO.lcd.print("Hello, ODROID-GO")
+GO.lcd.clear()
+GO.lcd.font(GO.lcd.FONT_DejaVu24, color=GO.lcd.GREEN)
+GO.lcd.text(GO.lcd.CENTER, GO.lcd.CENTER, "Hello, ODROID-GO!")

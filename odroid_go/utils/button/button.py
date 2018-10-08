@@ -27,6 +27,7 @@ import utime
 
 class Button:
     _pin = object()
+    _apin = object()
     _invert = 0
     _state = 0
     _last_state = 0
@@ -40,7 +41,15 @@ class Button:
     _debug_mode = False
 
     def __init__(self, pin, invert, db_time):
-        self._pin = Pin(pin, Pin.IN, Pin.PULL_UP)
+        # self._debug_mode = True
+
+        if 34 <= pin <= 39:
+            self._pin = Pin(pin, Pin.IN)
+            if 34 <= pin <= 35:
+                self._apin = ADC(self._pin, unit=1)
+                self._apin.atten(ADC.ATTN_11DB)
+        else:
+            self._pin = Pin(pin, Pin.IN, Pin.PULL_UP)
         self._invert = invert
         self._db_time = db_time
 
@@ -51,8 +60,6 @@ class Button:
         self._last_state = self._state
         self._last_time = self._time
         self._last_change = self._time
-
-        # self._debug_mode = True
 
     def _debug_message(self, results):
         if self._debug_mode:
@@ -86,16 +93,14 @@ class Button:
             return self._state
 
     def read_axis(self):
-        apin = ADC(self._pin)
-        apin.atten(ADC.ATTN_11DB)
-        val = apin.read()
+        val = self._apin.read()
 
         ms = utime.ticks_ms()
         pin_val = 0
 
         self._debug_message("val: " + str(val))
 
-        if val > 3900:
+        if val > 3000:
             pin_val = 1
             self._axis = 2
         elif 1500 < val < 2000:

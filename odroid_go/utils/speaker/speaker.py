@@ -53,12 +53,12 @@ class Speaker:
 
     def set_volume(self, volume=None):
         if volume is None:
-            print(str(self._volume_duty) + "/" + str(self._volume_duty / 1023 * 100) + " %")
-        elif not 0 <= volume <= 10:
-            print("Volume value must be from 0 to 10")
+            print(str(self._volume_duty) + " %")
+        elif not 0 <= volume <= 100:
+            print("Volume value must be 0 ~ 100 %")
         else:
             self._dac_switch(1)
-            self._volume_duty = round(volume * 10 * 10.23)
+            self._volume_duty = volume
 
     def set_beep(self, frequency=None, duration=None):
         if frequency is None and duration is None:

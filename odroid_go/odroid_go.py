@@ -14,12 +14,11 @@ class ODROID_GO:
         self._init_battery()
 
     def _init_lcd(self):
-        self.lcd = ILI9341(SPI(2, baudrate=40000000,
-                               miso=Pin(TFT_MISO_PIN, Pin.IN),
-                               mosi=Pin(TFT_MOSI_PIN, Pin.OUT),
-                               sck=Pin(TFT_SCLK_PIN, Pin.OUT)),
-                           cs=Pin(TFT_CS_PIN, Pin.OUT),
-                           dc=Pin(TFT_DC_PIN, Pin.OUT))
+        self.lcd = Lcd(width=TFT_WIDTH, height=TFT_HEIGHT,
+                       miso=TFT_MISO_PIN, mosi=TFT_MOSI_PIN, clk=TFT_SCLK_PIN,
+                       cs=TFT_CS_PIN, dc=TFT_DC_PIN, speed=TFT_SPI_SPEED)
+        self.lcd = self.lcd.get_tft_object()
+        Pin(TFT_LED_PIN, Pin.OUT).value(1)
 
     def _init_buttons(self):
         self.btn_joy_x = Button(BUTTON_JOY_X_PIN, True, BUTTON_DEBOUNCE_MS)
@@ -36,28 +35,10 @@ class ODROID_GO:
 
     def _init_battery(self):
         self.battery = Battery(BATTERY_PIN, BATTERY_RESISTANCE_NUM,
+                               BATTERY_SAMPLES, BATTERY_VMAX, BATTERY_VMIN,
                                ADC.WIDTH_12BIT, ADC.ATTN_11DB)
 
     def begin(self):
-        # LCD
-        self.lcd.erase()
-        self.lcd.fill(colors.BLACK)
-        self.lcd.set_pos(0, 0)
-        self.lcd.colors = colors
-        self.lcd.fonts = fonts
-        Pin(TFT_LED_PIN, Pin.OUT).value(1)
-
-        # Buttons
-        Pin(BUTTON_JOY_X_PIN, Pin.IN, Pin.PULL_UP)
-        Pin(BUTTON_JOY_Y_PIN, Pin.IN, Pin.PULL_UP)
-        Pin(BUTTON_MENU_PIN, Pin.IN, Pin.PULL_UP)
-        Pin(BUTTON_VOLUME_PIN, Pin.IN, Pin.PULL_UP)
-        Pin(BUTTON_SELECT_PIN, Pin.IN, Pin.PULL_UP)
-        Pin(BUTTON_START_PIN, Pin.IN, Pin.PULL_UP)
-        Pin(BUTTON_A_PIN, Pin.IN, Pin.PULL_UP)
-        Pin(BUTTON_B_PIN, Pin.IN, Pin.PULL_UP)
-
-        # Speaker
         self.speaker.set_volume(0.1)
         self.speaker.set_beep(262, 1)
 

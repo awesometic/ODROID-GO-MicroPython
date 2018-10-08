@@ -1,6 +1,8 @@
 from micropython import const
 
-
+TFT_WIDTH = const(320)
+TFT_HEIGHT = const(240)
+TFT_SPI_SPEED = const(40000000)
 TFT_DC_PIN = const(21)
 TFT_CS_PIN = const(5)
 TFT_LED_PIN = const(14)
@@ -24,3 +26,6 @@ SPEAKER_TONE_CHANNEL = const(0)
 
 BATTERY_PIN = const(36)
 BATTERY_RESISTANCE_NUM = const(2)
+BATTERY_SAMPLES = const(64)
+BATTERY_VMAX = const(420)
+BATTERY_VMIN = const(330)

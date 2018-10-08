@@ -1,17 +1,16 @@
 from odroid_go import GO
 import time
 
-GO.lcd.set_font(GO.lcd.fonts.TT24)
+GO.lcd.font(GO.lcd.FONT_DejaVu18)
 
 
-def show_battery_voltage():
-    GO.lcd.erase()
-    GO.lcd.set_pos(0, 0)
-
-    GO.lcd.print("Current Voltage: " + str(GO.battery.get_voltage()))
+def show_battery_status():
+    GO.lcd.clear()
+    GO.lcd.text(0, GO.lcd.CENTER, "Current Voltage: " + str(GO.battery.get_voltage()))
+    GO.lcd.text(0, GO.lcd.LASTY + 18, "Current Percentage: " + str(round(GO.battery.get_percentage())))
 
 
 while True:
-    show_battery_voltage()
+    show_battery_status()
 
     time.sleep(1)
